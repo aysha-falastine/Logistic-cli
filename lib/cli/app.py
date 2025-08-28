@@ -330,13 +330,13 @@ def main_menu():
 # ---------------- Drivers ----------------
 
 def list_drivers(session):
-    drivers = session.query(Driver).all()
+    drivers = session.query(Driver).all() # gets all drivers from database
     if not drivers:
         print("No drivers found.")
         return
     for d in drivers:
-        truck_info = f"Truck {d.assigned_truck.plate}" if getattr(d, "assigned_truck", None) else "Unassigned"
-        print(f"[{d.id}] {d.name} | Lic: {d.license_number} | {truck_info} | Status: {d.status} | Phone: {d.phone or '-'}")
+        truck_info = f"Truck {d.assigned_truck.plate}" if getattr(d, "assigned_truck", None) else "Unassigned" # checks if driver is assigned to a truck and displays accordingly
+        print(f"[{d.id}] {d.name} | Lic: {d.license_number} | {truck_info} | Status: {d.status} | Phone: {d.phone or '-'}") # display driver info in a readable format
 
 def create_driver(session):
     name = input("Driver name: ").strip()
@@ -344,31 +344,32 @@ def create_driver(session):
     phone = input("Phone (optional): ").strip() or None
     status = (input("Status (active/suspended/inactive) [active]: ").strip() or "active").lower()
     try:
-        d = Driver.create(session, name=name, license_number=lic, phone=phone, status=status)
+        d = Driver.create(session, name=name, license_number=lic, phone=phone, status=status) # uses helper from CRUDMixin in models.py
         print(f"Created driver {d.name} (id={d.id})")
     except Exception as e:
-        session.rollback()
+        session.rollback() #undo any changes if error occurs
         print("Error:", e)
 
-def delete_driver(session):
+def delete_driver(session): #delete a driver by ID
+    # show current drivers first
     list_drivers(session)
     try:
-        id_ = int(input("Enter driver id to delete: ").strip())
+        id_ = int(input("Enter driver id to delete: ").strip()) #ask user for driver ID to delete and remove extra spaces
     except ValueError:
         print("Invalid id (must be a number).")
         return
     ok = Driver.delete(session, id_)
     print("Deleted." if ok else "Driver not found.")
 
-def find_driver_by_license(session):
+def find_driver_by_license(session): #find a driver by license number
     lic = input("License to search: ").strip().upper()
     if not lic:
-        print("License cannot be empty.")
+        print("License cannot be empty.") #this is for ensuring a driver license is provided
         return
-    d = session.query(Driver).filter(Driver.license_number == lic).first()
+    d = session.query(Driver).filter(Driver.license_number == lic).first() 
     if d:
-        truck_info = f"Truck {d.assigned_truck.plate}" if getattr(d, "assigned_truck", None) else "Unassigned"
-        print(f"Found: [{d.id}] {d.name} | Lic: {d.license_number} | {truck_info} | Status: {d.status}")
+        truck_info = f"Truck {d.assigned_truck.plate}" if getattr(d, "assigned_truck", None) else "Unassigned" # checks if driver is assigned to a truck and displays accordingly
+        print(f"Found: [{d.id}] {d.name} | Lic: {d.license_number} | {truck_info} | Status: {d.status}") # display driver info in a readable format
     else:
         print("No match.")
 
@@ -376,7 +377,7 @@ def assign_driver_to_truck(session):
     # pick driver
     list_drivers(session)
     try:
-        did = int(input("Driver id to assign: ").strip())
+        did = int(input("Driver id to assign: ").strip()) 
     except ValueError:
         print("Invalid driver id.")
         return
@@ -388,7 +389,7 @@ def assign_driver_to_truck(session):
     # pick truck
     list_trucks(session)
     try:
-        tid = int(input("Assign to truck id: ").strip())
+        tid = int(input("Assign to truck id: ").strip()) # ask user for truck ID to assign the driver to
     except ValueError:
         print("Invalid truck id.")
         return
@@ -425,7 +426,8 @@ def unassign_driver(session):
         session.rollback()
         print("Error:", e)
 
-def view_truck_drivers(session):
+def view_truck_drivers(session): # view all drivers assigned to a specific truck
+    # pick truck
     list_trucks(session)
     try:
         tid = int(input("Truck id: ").strip())
