@@ -1,7 +1,7 @@
 LOGISTIC CLI.
 This is a small command-line application I built to practice working with Python, SQLAlchemy ORM, and Alembic migrations. The project simulates a basic logistics system where I can manage trucks, drivers, and their fuel logs.
 
-The goal of this project was to learn:
+### The goal of this project was to learn:
 
 1.How to design and organize a Python project with packages (lib/cli, lib/db)
 
@@ -15,35 +15,35 @@ The goal of this project was to learn:
 
 6.How to build a simple text-based CLI to interact with everything
 
-Features ✨
+### Features ✨
 
 1.Trucks
 
-Add, list, update, delete
+  Add, list, update, delete
 
-Each truck has a plate number, capacity, and status
+  Each truck has a plate number, capacity, and status
 
 2.Drivers
 
-Add, list, update, delete
+  Add, list, update, delete
 
-Drivers can be linked to trucks
+  Drivers can be linked to trucks
 
 3.Fuel Logs
 
-Record fuel purchases with vendor, liters, price, location, odometer, and date
+  Record fuel purchases with vendor, liters, price, location, odometer, and date
 
-Query logs by truck, vendor, or date range
+  Query logs by truck, vendor, or date range
 
 4.Seed Data
 
-Populate the database with fake trucks, drivers, and fuel logs using Faker
+  Populate the database with fake trucks, drivers, and fuel logs using Faker
 
-Useful for testing
+  Useful for testing
 
-![alt text](image-1.png)
+![alt text](./img/image-1.png)
 
-Setup ⚙️
+### Setup ⚙️
 
 1.Clone the repo and install dependencies (using pipenv):
     pipenv install
@@ -55,28 +55,28 @@ Setup ⚙️
      python cli.py
 
 
-Example Usage 🖥️
+## Example Usage 🖥️
 
 1.Trucks menu
 
- Add a truck → enter plate, capacity, status
+  Add a truck → enter plate, capacity, status
 
- List all trucks → shows all with IDs
+  List all trucks → shows all with IDs
 
 2.Drivers menu
 
- Add driver → name, license, phone
+  Add driver → name, license, phone
 
- Some drivers can be assigned to trucks
+  Some drivers can be assigned to trucks
 
 3.Fuel logs menu
 
- Record fuel purchase
+  Record fuel purchase
 
- Query logs by date/vendor
+  Query logs by date/vendor
 
 
-What I Learned 📚
+### What I Learned 📚
 
 1.How to split a project into clear modules (cli, db)
 
@@ -88,7 +88,7 @@ What I Learned 📚
 
 5.How to debug imports and project structure in VSCode + WSL
 
-FUTURE ENHANCEMENT 🚀
+### FUTURE ENHANCEMENT 🚀
 
 -Add reports (e.g. fuel cost per truck, average consumption)
 
@@ -97,14 +97,14 @@ FUTURE ENHANCEMENT 🚀
 -Add authentication (stretch goal)
 
 Here is what it looks like when i run the program;
-![alt text](image-3.png)
+![alt text](./img/image-3.png)
 
-##TRUCK MENU
-![alt text](image-4.png)
+## TRUCK MENU
+![alt text](./img/image-4.png)
 
-##FUEL LOG MENU
-![alt text](image-5.png)
+## FUEL LOG MENU
+![alt text](./img/image-5.png)
 
-##DRIVERS MENU
-![alt text](image-6.png)
+## DRIVERS MENU
+![alt text](./img/image-6.png)
 
