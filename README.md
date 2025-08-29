@@ -41,41 +41,10 @@ This is a small command-line application I built to practice working with Python
 
   Useful for testing
   ## STRUCTURE
-  Logistic-cli/
-├─ README.md
-├─ Pipfile
-├─ Pipfile.lock
-├─ cli.py                     # Entry point: imports and calls main_menu()
-└─ lib/
-   ├─ __init__.py             # marks `lib` as a package
-   ├─ helpers.py              # small utilities (input/date helpers, etc.)
-   ├─ debug.py                # ad-hoc testing sandbox (optional)
-   │
-   ├─ cli/
-   │  ├─ __init__.py
-   │  └─ app.py               # ALL menus and user I/O (Trucks, Fuel Logs, Drivers)
-   │
-   └─ db/
-      ├─ __init__.py
-      ├─ database.py          # SQLAlchemy engine + SessionLocal (points to my_database.db)
-      ├─ models.py            # ORM models: Truck, FuelLog, Driver (+ validations, CRUDMixin)
-      ├─ seed.py              # seeds trucks/drivers/fuel logs (uses Faker)
-      ├─ my_database.db       # SQLite file (created after migrate/seed)
-      │
-      ├─ alembic.ini          # Alembic config (sqlalchemy.url = sqlite:///my_database.db)
-      └─ migrations/
-         ├─ env.py            # tells Alembic where Base.metadata is
-         ├─ README
-         ├─ script.py.mako
-         └─ versions/
-            ├─ <timestamp>_initial_tables.py
-            └─ <timestamp>_add_drivers_table.py
+  ![alt text](./img/image-1.png)
 
-
-
-
-### Setup ⚙️
-
+  
+## SETUP
 1.Clone the repo and install dependencies (using pipenv):
     pipenv install
     pipenv shell
