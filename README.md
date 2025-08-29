@@ -1,4 +1,4 @@
-LOGISTIC CLI.
+## LOGISTIC CLI.
 This is a small command-line application I built to practice working with Python, SQLAlchemy ORM, and Alembic migrations. The project simulates a basic logistics system where I can manage trucks, drivers, and their fuel logs.
 
 ### The goal of this project was to learn:
@@ -40,8 +40,39 @@ This is a small command-line application I built to practice working with Python
   Populate the database with fake trucks, drivers, and fuel logs using Faker
 
   Useful for testing
+  ## STRUCTURE
+  Logistic-cli/
+├─ README.md
+├─ Pipfile
+├─ Pipfile.lock
+├─ cli.py                     # Entry point: imports and calls main_menu()
+└─ lib/
+   ├─ __init__.py             # marks `lib` as a package
+   ├─ helpers.py              # small utilities (input/date helpers, etc.)
+   ├─ debug.py                # ad-hoc testing sandbox (optional)
+   │
+   ├─ cli/
+   │  ├─ __init__.py
+   │  └─ app.py               # ALL menus and user I/O (Trucks, Fuel Logs, Drivers)
+   │
+   └─ db/
+      ├─ __init__.py
+      ├─ database.py          # SQLAlchemy engine + SessionLocal (points to my_database.db)
+      ├─ models.py            # ORM models: Truck, FuelLog, Driver (+ validations, CRUDMixin)
+      ├─ seed.py              # seeds trucks/drivers/fuel logs (uses Faker)
+      ├─ my_database.db       # SQLite file (created after migrate/seed)
+      │
+      ├─ alembic.ini          # Alembic config (sqlalchemy.url = sqlite:///my_database.db)
+      └─ migrations/
+         ├─ env.py            # tells Alembic where Base.metadata is
+         ├─ README
+         ├─ script.py.mako
+         └─ versions/
+            ├─ <timestamp>_initial_tables.py
+            └─ <timestamp>_add_drivers_table.py
 
-![alt text](./img/image-1.png)
+
+
 
 ### Setup ⚙️
 
@@ -59,21 +90,21 @@ This is a small command-line application I built to practice working with Python
 
 1.Trucks menu
 
-  Add a truck → enter plate, capacity, status
+  . Add a truck → enter plate, capacity, status
 
-  List all trucks → shows all with IDs
+  . List all trucks → shows all with IDs
 
 2.Drivers menu
 
-  Add driver → name, license, phone
+  . Add driver → name, license, phone
 
-  Some drivers can be assigned to trucks
+  . Some drivers can be assigned to trucks
 
 3.Fuel logs menu
 
-  Record fuel purchase
+  . Record fuel purchase
 
-  Query logs by date/vendor
+  . Query logs by date/vendor
 
 
 ### What I Learned 📚
